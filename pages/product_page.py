@@ -16,3 +16,9 @@ class ProductPage(BasePage):
         price = self.browser.find_element(*ProductPageLocators.ITEM_PRICE).text
         basket_price = self.browser.find_element(*ProductPageLocators.PRICE_ALERT).text
         assert price == basket_price, f"Basket price {basket_price} is not equal to item {price} price on page {self.url}"
+
+    def check_success_message_not_present(self):
+        assert self.is_not_element_present(*ProductPageLocators.ADDED_ALERT)
+
+    def check_success_message_is_disappeared(self):
+        assert self.is_disappeared(*ProductPageLocators.ADDED_ALERT)

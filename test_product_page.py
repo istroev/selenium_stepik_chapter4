@@ -22,3 +22,25 @@ def test_guest_can_add_product_to_basket(browser, link):
     page.solve_quiz_and_get_code()
     page.check_added_item()
     page.check_basket_price()
+
+
+@pytest.mark.xfail
+def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
+    page = ProductPage(browser, link)
+    page.open()
+    page.add_product_to_basket()
+    page.check_success_message_not_present()
+
+
+def test_guest_cant_see_success_message(browser):
+    page = ProductPage(browser, link)
+    page.open()
+    page.check_success_message_not_present()
+
+
+@pytest.mark.xfail
+def test_message_disappeared_after_adding_product_to_basket(browser):
+    page = ProductPage(browser, link)
+    page.open()
+    page.add_product_to_basket()
+    page.check_success_message_is_disappeared()
